@@ -32,19 +32,24 @@ public class Program {
             char anwser = sc.next().charAt(0);
 
             if (anwser == 'y') {
-                
                 System.out.println("Enter date do update the reservation: ");
                 System.out.print("Check-in date (dd/MM/yyyy): ");
                 checkIn = sdf.parse(sc.next());
                 System.out.print("Check-out date(dd/MM/yyyy): ");
                 checkOut = sdf.parse(sc.next());
 
-                reservation.updateDates(checkIn, checkOut);
-                System.out.println("Reservation: " + reservation);
-                System.out.println("End of reservation");
+                String error = reservation.updateDates(checkIn, checkOut);
+
+                if (error != null) {
+                    System.out.println("Error in reservation: " + error);
+                } else {
+                    System.out.println("Reservation: " + reservation);
+                    System.out.println("End of reservation");
+                }
+
             } else {
                 System.out.println("End of reservation");
-            }            
+            }
         }
     }
 }
